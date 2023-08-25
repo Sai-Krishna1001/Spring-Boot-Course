@@ -1,0 +1,11 @@
+bootstrap installation
+===========================
+--> npm install bootstrap --save
+
+install axios library
+========================
+--> npm install axios --save
+
+install router library
+==========================
+--> npm install react-router-dom --save
