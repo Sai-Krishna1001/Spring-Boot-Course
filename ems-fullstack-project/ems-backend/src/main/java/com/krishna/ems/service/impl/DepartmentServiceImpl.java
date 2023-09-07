@@ -18,8 +18,10 @@ public class DepartmentServiceImpl implements DepartmentService {
     private DepartmentRepository departmentRepository;
     @Override
     public DepartmentDto createDepartment(DepartmentDto departmentDto) {
+        System.out.println("deparmentsj;lg");
         Department department = DepartmentMapper.mapToDepartment(departmentDto);
         Department savedDepartment = departmentRepository.save(department);
+        System.out.println("saved department");
         return DepartmentMapper.mapToDepartmentDto(savedDepartment);
     }
 
