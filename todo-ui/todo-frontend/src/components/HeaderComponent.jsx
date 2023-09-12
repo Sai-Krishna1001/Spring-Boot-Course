@@ -1,8 +1,16 @@
-import { isUserLoggedIn } from "../services/AuthService";
+import { useNavigate } from "react-router-dom";
+import { isUserLoggedIn, logout } from "../services/AuthService";
 
 const HeaderComponent = () => {
 
   const isAuth = isUserLoggedIn();
+
+  const navigator = useNavigate();
+  
+  const handleLogout = () => {
+    logout();
+    navigator("/login");
+  }
 
   return (
     <div>
@@ -11,12 +19,20 @@ const HeaderComponent = () => {
           <div className="container">
               
             <a className="navbar-brand" href="http://localhost:3000">Todo Management System</a>
-            
-            <a className="navbar-brand ml-auto" href="/todos">Todos</a>
+            {
+              isAuth && <a className="navbar-brand ml-auto" href="/todos">Todos</a>
+            }
 
-            <a className="navbar-brand ml-auto" href="/register">Register</a>
-            
-            <a className="navbar-brand ml-auto" href="/login">Login</a>
+            {
+              !isAuth && <a className="navbar-brand ml-auto" href="/register">Register</a>
+            }
+            {
+              !isAuth &&  <a className="navbar-brand ml-auto" href="/login">Login</a>
+            }
+            {
+              isAuth &&  <a className="navbar-brand ml-auto" href="/login" onClick={handleLogout}>Logout</a>
+            }
+           
           </div>
         </nav>
       </header>
